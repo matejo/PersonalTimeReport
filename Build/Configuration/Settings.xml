@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <Setting Key="MaxWidth" Value="1024" />
+   <Setting Key="MaxHeight" Value="768" />
+   <Setting Key="CellWidth" Value="43" />
+   <Setting Key="AccountedVisibleWidth" Value="60" />
+   <Setting Key="HOUR_TOTAL" Value="8" />
+   <Setting Key="IsSaturdayHoliday" Value="True" />
+</Settings>

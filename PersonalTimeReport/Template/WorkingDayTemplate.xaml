@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="PersonalTimeReport.WorkingDayTemplate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Local="clr-namespace:PersonalTimeReport"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+   <UserControl.Visibility>
+      <MultiBinding Converter="{StaticResource WeekNumberToVisibilityConverter}">
+         <Binding Path="." />
+         <Binding Path="VisibleWeeks" Source="{StaticResource ApplicationManager}" />
+      </MultiBinding>
+   </UserControl.Visibility>
+   <Grid Background="{Binding ActualWorkingDay, Converter={StaticResource TodayToBackgroundConverter}}">
+      <Grid.RowDefinitions>
+         <RowDefinition Height="*" />
+         <RowDefinition Height="*" />
+         <RowDefinition Height="*" />
+         <RowDefinition Height="*" />
+         <RowDefinition Height="*" />
+         <RowDefinition Height="*" />
+         <RowDefinition Height="*" />
+      </Grid.RowDefinitions>
+      <Grid Grid.Row="0" MouseUp="Grid_MouseUp">
+         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+         </Grid.RowDefinitions>
+         <Local:LabelExt Grid.Row="0" Content="{Binding DayOfTheWeek}" Padding="0" HorizontalContentAlignment="Center" Style="{Binding ., Converter={StaticResource DayToStyleConverter}}" />
+         <Local:LabelExt Grid.Row="1" Content="{Binding DayNumber}" Padding="0" HorizontalContentAlignment="Center"  Style="{Binding ., Converter={StaticResource DayToStyleConverter}, ConverterParameter=Number}"/>
+      </Grid>
+      <Local:TimeTextBox Grid.Row="1" Margin="0" CheckTimeBoundaries="True" Text="{Binding MorningEntrance, Mode=TwoWay, StringFormat=hh\\:mm}" IsInputMaskEnabled="True" />
+      <Local:TimeTextBox Grid.Row="2" Margin="0" CheckTimeBoundaries="True" Text="{Binding MorningExit, Mode=TwoWay, StringFormat=hh\\:mm}" IsInputMaskEnabled="True" />
+      <Local:TimeTextBox Grid.Row="3" Margin="0" CheckTimeBoundaries="True" Text="{Binding EveningEntrance, Mode=TwoWay, StringFormat=hh\\:mm}" IsInputMaskEnabled="True" />
+      <Local:TimeTextBox Grid.Row="4" Margin="0" CheckTimeBoundaries="True" Text="{Binding EveningExit, Mode=TwoWay, StringFormat=hh\\:mm}" IsInputMaskEnabled="True" />
+      <Local:TimeTextBox Grid.Row="5" Margin="0" IsReadOnly="True" Text="{Binding HOUR_TOTAL, Source={StaticResource ApplicationManager}, StringFormat=hh\\:mm}"  Visibility="{Binding AdditionalTimeShow, Source={StaticResource ApplicationManager}, Converter={StaticResource BoolToVisibilityConverter}}"/>
+      <Local:TimeTextBox Grid.Row="6" Margin="0" IsReadOnly="True"  Visibility="{Binding AdditionalTimeShow, Source={StaticResource ApplicationManager}, Converter={StaticResource BoolToVisibilityConverter}}">
+         <Local:TimeTextBox.Text>
+            <MultiBinding Converter="{StaticResource EstimatedExitTimeConverter}" StringFormat="hh\:mm" Mode="OneWay">
+               <Binding Path="MorningEntrance" />
+               <Binding Path="MorningExit" />
+               <Binding Path="EveningEntrance" />
+            </MultiBinding>
+         </Local:TimeTextBox.Text>
+      </Local:TimeTextBox>
+   </Grid>
+</UserControl>

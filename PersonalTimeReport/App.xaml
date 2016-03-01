@@ -1,0 +1,34 @@
+﻿<Application x:Class="PersonalTimeReport.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ViewModel="clr-namespace:PersonalTimeReport"
+             xmlns:Local="clr-namespace:PersonalTimeReport"
+             StartupUri="MainWindow.xaml">
+   <Application.Resources>
+      <ResourceDictionary>
+         <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="Themes/Theme.xaml"/>
+         </ResourceDictionary.MergedDictionaries>
+
+         <BitmapImage x:Key="GenericImages" UriSource="Images/GenericImages.jpg" />
+         <BitmapImage x:Key="MoreImage" UriSource="Images/more.png" />
+         
+         <x:StaticExtension Member="ViewModel:ApplicationManager.Instance" x:Key="ApplicationManager"/>
+
+         <Local:DebugConverter x:Key="DebugConverter" />
+         <Local:DebugMultiConverter x:Key="DebugMultiConverter" />
+         <Local:EstimatedExitTimeConverter x:Key="EstimatedExitTimeConverter" />
+         <Local:OvertimeConverter x:Key="OvertimeConverter" />
+         <Local:WorkItemToTimeSpanConverter x:Key="WorkItemToTimeSpanConverter" />
+         <Local:DailyOrderHoursConverter x:Key="DailyOrderHoursConverter" />
+         <Local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+         <Local:TodayToBackgroundConverter x:Key="TodayToBackgroundConverter" />
+         <Local:OrderToDescriptionConverter x:Key="OrderToDescriptionConverter" />
+         <Local:WeekNumberToVisibilityConverter x:Key="WeekNumberToVisibilityConverter" />
+         <Local:DayToStyleConverter x:Key="DayToStyleConverter" />
+         <Local:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+         <Local:CountToVisibilityConverter x:Key="CountToVisibilityConverter" />
+         
+      </ResourceDictionary>
+   </Application.Resources>
+</Application>

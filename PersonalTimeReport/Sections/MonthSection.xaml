@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="PersonalTimeReport.MonthSection"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Local="clr-namespace:PersonalTimeReport"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+   <Grid>
+      <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="140" />
+         <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <Grid Grid.Column="0">
+         <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+         </Grid.RowDefinitions>
+         <Label Grid.Row="0" />
+         <Label Grid.Row="1" />
+         <Label Grid.Row="2" Content="Entrata"/>
+         <Label Grid.Row="3" Content="Uscita"/>
+         <Label Grid.Row="4" Content="Entrata"/>
+         <Label Grid.Row="5" Content="Uscita"/>
+         <Image Grid.Row="6" Margin="5,0,0,0" Source="{StaticResource MoreImage}" Width="17" Height="15" HorizontalAlignment="Left" MouseUp="Image_MouseUp" />
+         <Label Grid.Row="7" Content="Giorno di lavoro" Visibility="{Binding AdditionalTimeShow, Source={StaticResource ApplicationManager}, Converter={StaticResource BoolToVisibilityConverter}}" />
+         <Label Grid.Row="8" Content="Presunta Uscita" Visibility="{Binding AdditionalTimeShow, Source={StaticResource ApplicationManager}, Converter={StaticResource BoolToVisibilityConverter}}" />
+      </Grid>
+      <ItemsControl Grid.Column="1" ItemsSource="{Binding Managers[CalendarsManager].CurrentMonth, Source={StaticResource ApplicationManager}}">
+         <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+               <StackPanel Orientation="Horizontal" />
+            </ItemsPanelTemplate>
+         </ItemsControl.ItemsPanel>
+         <ItemsControl.ItemTemplate>
+            <DataTemplate>
+               <Local:WorkingDayTemplate />
+            </DataTemplate>
+         </ItemsControl.ItemTemplate>
+      </ItemsControl >
+   </Grid>
+</UserControl>

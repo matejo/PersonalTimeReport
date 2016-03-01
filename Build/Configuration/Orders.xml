@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Orders xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Order Id="-1" Name="Permesso" />
+  <Order Id="-2" Name="Ferie" />
+  <Order Id="-3" Name="Malattia" />
+  <Order Id="GIMA" Name="Gima per Bausch &amp; Lomb" />
+</Orders>

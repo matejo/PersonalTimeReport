@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="PersonalTimeReport.MenuSection"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Local="clr-namespace:PersonalTimeReport"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+   <UserControl.Resources>
+      <Local:Ticker x:Key="ticker" />
+   </UserControl.Resources>
+   <Grid>
+      <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="Auto" />
+         <ColumnDefinition Width="Auto" />
+         <ColumnDefinition Width="Auto" />
+         <ColumnDefinition Width="Auto" />
+         <ColumnDefinition Width="*" />
+         <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+      <Grid Grid.Column="0">
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+         </Grid.ColumnDefinitions>
+         <Button Grid.Column="0" Width="32" Height="32" Command="{Binding Managers[CommandsManager].NewCalendar, Source={StaticResource ApplicationManager}}">
+            <Button.Template>
+               <ControlTemplate>
+                  <Image>
+                     <Image.Source>
+                        <CroppedBitmap Source="{StaticResource GenericImages}" SourceRect="220,138,32,32"/>
+                     </Image.Source>
+                  </Image>
+               </ControlTemplate>
+            </Button.Template>
+         </Button>
+         <Button Grid.Column="1" Width="32" Height="32" Command="{Binding Managers[CommandsManager].LoadCalendar, Source={StaticResource ApplicationManager}}">
+            <Button.Template>
+               <ControlTemplate>
+                  <Image>
+                     <Image.Source>
+                        <CroppedBitmap Source="{StaticResource GenericImages}" SourceRect="95,185,32,32"/>
+                     </Image.Source>
+                  </Image>
+               </ControlTemplate>
+            </Button.Template>
+         </Button>
+         <Button Grid.Column="2" Width="32" Height="32" Command="{Binding Managers[CommandsManager].SaveCalendar, Source={StaticResource ApplicationManager}}">
+            <Button.Template>
+               <ControlTemplate>
+                  <Image>
+                     <Image.Source>
+                        <CroppedBitmap Source="{StaticResource GenericImages}" SourceRect="136,138,32,32"/>
+                     </Image.Source>
+                  </Image>
+               </ControlTemplate>
+            </Button.Template>
+         </Button>
+      </Grid>
+      <Separator Grid.Column="1" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+      <Grid Grid.Column="2">
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+         </Grid.ColumnDefinitions>
+         <Button Grid.Column="0" Width="32" Height="32" Command="{Binding Managers[CommandsManager].PrevMonth, Source={StaticResource ApplicationManager}}">
+            <Button.Template>
+               <ControlTemplate>
+                  <Image>
+                     <Image.Source>
+                        <CroppedBitmap Source="{StaticResource GenericImages}" SourceRect="12,96,32,32"/>
+                     </Image.Source>
+                  </Image>
+               </ControlTemplate>
+            </Button.Template>
+         </Button>
+         <Button Grid.Column="1" Width="32" Height="32" Command="{Binding Managers[CommandsManager].NextMonth, Source={StaticResource ApplicationManager}}">
+            <Button.Template>
+               <ControlTemplate>
+                  <Image>
+                     <Image.Source>
+                        <CroppedBitmap Source="{StaticResource GenericImages}" SourceRect="255,138,32,32"/>
+                     </Image.Source>
+                  </Image>
+               </ControlTemplate>
+            </Button.Template>
+         </Button>
+      </Grid>
+      <Separator Grid.Column="3" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+      <Grid Grid.Column="4">
+         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+         </Grid.ColumnDefinitions>
+         <Button Grid.Column="0" Width="32" Height="32" Command="{Binding Managers[CommandsManager].Order_CRUD, Source={StaticResource ApplicationManager}}">
+            <Button.Template>
+               <ControlTemplate>
+                  <Image>
+                     <Image.Source>
+                        <CroppedBitmap Source="{StaticResource GenericImages}" SourceRect="218,55,32,32"/>
+                     </Image.Source>
+                  </Image>
+               </ControlTemplate>
+            </Button.Template>
+         </Button>
+      </Grid>
+      <Label Grid.Column="5" Content="{Binding Now, Source={StaticResource ticker}}" />
+   </Grid>
+</UserControl>

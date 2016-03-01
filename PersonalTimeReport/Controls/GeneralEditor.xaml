@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="PersonalTimeReport.GeneralEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Local="clr-namespace:PersonalTimeReport"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             Padding="20,20,20,20">
+   <Grid>
+      <Grid.RowDefinitions>
+         <RowDefinition Height="*" />
+         <RowDefinition Height="5" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <ScrollViewer Grid.Row="0" PanningMode="Both" VerticalScrollBarVisibility="Auto">
+         <Grid>
+            <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="Auto" />
+               <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ItemsControl Grid.Column="0" ItemsSource="{Binding Templates, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+               <ItemsControl.ItemTemplate>
+                  <DataTemplate>
+                     <Label Content="{Binding Key}"/>
+                  </DataTemplate>
+               </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <ItemsControl Grid.Column="1" ItemsSource="{Binding Templates, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+               <ItemsControl.ItemTemplate>
+                  <DataTemplate>
+                     <ContentControl MinWidth="30" MaxWidth="150" Padding="5,5,5,5" Margin="5,5,5,5" Content="{Binding Value}"/>
+                  </DataTemplate>
+               </ItemsControl.ItemTemplate>
+            </ItemsControl>
+         </Grid>
+      </ScrollViewer>
+      <ItemsControl Grid.Row="2" ItemsSource="{Binding Buttons, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+         <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+               <StackPanel Orientation="Horizontal" />
+            </ItemsPanelTemplate>
+         </ItemsControl.ItemsPanel>
+         <ItemsControl.ItemTemplate>
+            <DataTemplate>
+               <Button Padding="5,5,5,5" Margin="5,5,5,5" Content="{Binding Key}" Tag="{Binding Key}" Click="Button_Click"/>
+            </DataTemplate>
+         </ItemsControl.ItemTemplate>
+      </ItemsControl>
+      <TextBlock x:Name="ErrorText"  Grid.Row="3" Text="" FontWeight="Bold" Foreground="Red" Visibility="{Binding Text, Converter={StaticResource NullToVisibilityConverter}, RelativeSource={RelativeSource Self}}"/>
+   </Grid>
+</UserControl>

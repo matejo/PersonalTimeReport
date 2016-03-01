@@ -1,0 +1,50 @@
+﻿<Page x:Class="PersonalTimeReport.HomePage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Local="clr-namespace:PersonalTimeReport"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d">
+   <Grid>
+      <Local:BusyIndicator Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ApplicationManager}}" Panel.ZIndex="999" />
+      <ContentControl Content="{Binding OverlayPanel, Source={StaticResource ApplicationManager}}" Panel.ZIndex="997" />
+      <DockPanel>
+         <Local:MenuSection DockPanel.Dock="Top" Background="{StaticResource MenuBackground}" />
+         <ScrollViewer HorizontalScrollBarVisibility="Auto">
+            <Grid>
+               <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition Height="*" />
+               </Grid.RowDefinitions>
+               <Grid Grid.Row="0" Background="{StaticResource WorkHoursBackground}" >
+                  <Grid HorizontalAlignment="Center">
+                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                     </Grid.ColumnDefinitions>
+                     <Local:LabelExt Grid.Column="0" Content="Orari di " HorizontalContentAlignment="Right" VerticalContentAlignment="Center" Style="{StaticResource FontBig}"/>
+                     <Local:LabelExt Grid.Column="1" Content="{Binding Managers[CalendarsManager].CurrentMonth.CurrentMonthName, Source={StaticResource ApplicationManager}}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Style="{StaticResource FontBigBold}" />
+                     <Local:LabelExt Grid.Column="2" Content="{Binding Managers[CalendarsManager].CurrentYear.Year, Source={StaticResource ApplicationManager}}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Style="{StaticResource FontBigBold}" />
+                  </Grid>
+               </Grid>
+               <Local:MonthSection Grid.Row="1" />
+               <Local:LabelExt Grid.Row="2" Visibility="{Binding Managers[SettingsManager].Settings[IsRealHoursVisible].Value, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ApplicationManager}}" Content="Ore Reali" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{StaticResource FontBig}" Background="{StaticResource RealHoursBackground}"/>
+               <Local:AccountedHours Visibility="{Binding Managers[SettingsManager].Settings[IsRealHoursVisible].Value, Converter={StaticResource BoolToVisibilityConverter}, Source={StaticResource ApplicationManager}}" AccountType="Real" Grid.Row="3" />
+               <Local:LabelExt Grid.Row="4" Content="Ore Segnate" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{StaticResource FontBig}" Background="{StaticResource DeliveredHoursBackground}"/>
+               <Local:AccountedHours AccountType="Delivered" Grid.Row="5" />
+               <Local:LabelExt Grid.Row="6" Content="Straordinario" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Style="{StaticResource FontBig}" Background="{StaticResource OvertimeHoursBackground}"/>
+               <Local:OvertimeSection Grid.Row="7" />
+            </Grid>
+         </ScrollViewer>
+      </DockPanel>
+      <Local:NotificationSection Panel.ZIndex="998" />
+   </Grid>
+</Page>

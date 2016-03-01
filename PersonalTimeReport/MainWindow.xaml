@@ -1,0 +1,10 @@
+﻿<Window x:Class="PersonalTimeReport.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Local="clr-namespace:PersonalTimeReport"
+        WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight"
+        MaxWidth="{Binding MaxWidth, Source={StaticResource ApplicationManager}}"
+        MaxHeight="{Binding MaxHeight, Source={StaticResource ApplicationManager}}"
+        Title="{Binding Title, Source={StaticResource ApplicationManager}}">
+   <Local:HomePage/>
+</Window>
